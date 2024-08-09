@@ -27,11 +27,13 @@ class BedListener implements Listener{
                foreach($sleepings as $weak){
                   $splayer = Server::getInstance()->getPlayerExact($weak);
                   $count = count($sleepings);
-                  $players = count($player->getWorld()->getPlayers()) / 2;
+                  $players = $player->getWorld()->getPlayers();
                   $requerid = round($players);
-                  Server::getInstance()->broadcastMessage("§f{$count}/$requerid are sleeping");
+                  foreach($players as $user) {
+                       $user->sendMessage("§f{$count}/$requerid are sleeping");
+                  }
                   
-                  if($count == $requerid){
+                  if($count == $requerid / 2){
                      $player->getWorld()->setTime(World::TIME_SUNRISE);
                      $splayer->stopSleep();
                      WeakPlayer::getInstance()->unsetSleeping($splayer);
