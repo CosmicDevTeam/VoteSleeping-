@@ -1,0 +1,5 @@
+name: VotingSleep
+main: zephy\sleep\Loader;
+api: 5.0.0
+version: 1.0.0
+author: Zephyrhz0
