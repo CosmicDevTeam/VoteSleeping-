@@ -55,6 +55,7 @@ class BedListener implements Listener{
       }
    }
    public function getPercentage(): int|float {
-      return new Config(Loader::getInstance()->getDataFolder() . "beds.yml",Config::YAML)->get("percentage");
+      return (new Config(Loader::getInstance()->getDataFolder() . "beds.yml", Config::YAML))->get("percentage");
+         
    } 
 }
