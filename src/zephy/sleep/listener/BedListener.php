@@ -32,7 +32,7 @@ class BedListener implements Listener{
                   Server::getInstance()->broadcastMessage("§f{$count}/$requerid are sleeping");
                   
                   if($count == $requerid){
-                     $player->getWorld()->setTime(World::SUNRISE());
+                     $player->getWorld()->setTime(World::TIME_SUNRISE);
                      $splayer->stopSleep();
                      WeakPlayer::getInstance()->unsetSleeping($splayer);
                      
