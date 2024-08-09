@@ -6,6 +6,7 @@ use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\player\PlayerMoveEvent;
 use pocketmine\block\Bed;
+use pocketmine\world\World;
 use zephy\sleep\cache\WeakPlayer;
 use pocketmine\Server;
 class BedListener implements Listener{
