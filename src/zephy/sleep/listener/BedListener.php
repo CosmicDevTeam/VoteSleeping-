@@ -9,6 +9,8 @@ use pocketmine\block\Bed;
 use pocketmine\world\World;
 use zephy\sleep\cache\WeakPlayer;
 use pocketmine\Server;
+use pocketmine\utils\Config;
+use zephy\sleep\Loader;
 class BedListener implements Listener{
    public function onInteract(PlayerInteractEvent $event){
       $player = $event->getPlayer();
@@ -28,12 +30,12 @@ class BedListener implements Listener{
                   $splayer = Server::getInstance()->getPlayerExact($weak);
                   $count = count($sleepings);
                   $players = $player->getWorld()->getPlayers();
-                  $requerid = round(count($players));
+                  $requerid = round(count($players) * $this->getPercentage());
                   foreach($players as $user) {
                        $user->sendMessage("§f{$count}/$requerid are sleeping");
                   }
                   
-                  if($count == $requerid / 2){
+                  if($count == $requerid){
                      $player->getWorld()->setTime(World::TIME_SUNRISE);
                      $splayer->stopSleep();
                      WeakPlayer::getInstance()->unsetSleeping($splayer);
@@ -52,4 +54,7 @@ class BedListener implements Listener{
          WeakPlayer::getInstance()->unsetSleeping($player);
       }
    }
+   public function getPercentage(): int|float {
+      return new Config(Loader::getInstance()->getDataFolder() . "beds.yml",Config::YAML)->get("percentage");
+   } 
 }
